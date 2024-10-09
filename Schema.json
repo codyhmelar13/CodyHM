@@ -1,0 +1,22 @@
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org",
+	"@type": "Person",
+"@id":"https://www.english.pitt.edu/people/cody-hmelar",
+	"familyName": "Hmelar",
+	"givenName": "Cody",
+	"additionalName": "Edward",
+	"alternateName":"Gee Sheridan Hmelar",
+	"worksFor": "https://www.codyhm.com/",
+	"jobTitle": "Journalist",
+	"alumniOf": {
+	"@type": "EducationalOrganization",
+    "name": "Hofstra University",
+	"url": "https://www.hofstra.edu/",
+	"birthPlace": "Palo Alto, CA"
+},
+	"image": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.english.pitt.edu%2Fpeople%2Fcody-hmelar&psig=AOvVaw2DmCf2eHxJZsP0hjE_TpOA&ust=1728496006322000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKiOzcWr_4gDFQAAAAAdAAAAABAE",
+"https://twitter.com/CodyHmelar",
+"https://www.instagram.com/CodyHmelar"]
+}
+</script>
