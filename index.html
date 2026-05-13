@@ -596,8 +596,6 @@
 </footer>
 
 <script>
-var base = ''; // clean domain: codyhmelar.com
-
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
@@ -606,20 +604,15 @@ function showPage(id) {
   var nav = document.getElementById('nav-' + id);
   if (nav) nav.classList.add('active');
   window.scrollTo(0, 0);
-  history.pushState({ id: id }, '', base + (id === 'home' ? '/' : '/' + id));
+  var url = id === 'home' ? '/' : '/' + id;
+  if (location.pathname !== url) {
+    history.pushState({ id: id }, '', url);
+  }
 }
 
 function loadFromPath() {
-  var path = location.pathname.replace(base, '').replace(/^\/|\/$/g, '');
+  var path = location.pathname.replace(/^\/|\/$/g, '');
   showPage(path || 'home');
-}
-
-// Handle redirect from 404.html on direct URL visits
-var redirect = sessionStorage.getItem('redirect');
-if (redirect) {
-  sessionStorage.removeItem('redirect');
-  var path = redirect.replace(base, '').replace(/^\/|\/$/g, '');
-  history.replaceState({ id: path }, '', base + '/' + path);
 }
 
 // Intercept all internal nav link clicks
@@ -634,7 +627,17 @@ document.addEventListener('click', function(e) {
 });
 
 window.addEventListener('popstate', loadFromPath);
-window.addEventListener('DOMContentLoaded', loadFromPath);
+
+// On load: check sessionStorage (set by 404.html) then fall back to pathname
+document.addEventListener('DOMContentLoaded', function() {
+  var redirect = sessionStorage.getItem('redirect');
+  if (redirect) {
+    sessionStorage.removeItem('redirect');
+    var path = redirect.replace(/^\/|\/$/g, '');
+    history.replaceState({ id: path }, '', '/' + path);
+  }
+  loadFromPath();
+});
 </script>
 </body>
 </html>
